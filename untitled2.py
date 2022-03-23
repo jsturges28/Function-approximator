@@ -41,8 +41,9 @@ ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap="viridis", linewidth=0, anti
 
 plt.show()
 '''
+batch_size = 10
 
-input_layer = keras.layers.Input(shape=(100,100))
+input_layer = keras.layers.Input(batch_size = batch_size, shape=(100,))
 dense = Dense(10, activation='relu')(input_layer)
 dense = Dense(10, activation='relu')(dense)
 dense = Dense(10, activation='relu')(dense)
@@ -52,14 +53,34 @@ dense = Dense(10, activation='relu')(dense)
 dense = Dense(10, activation='relu')(dense)
 dense = Dense(10, activation='relu')(dense)
 dense = Dense(10, activation='relu')(dense)
-output = Dense(2)(dense)
+dense = Dense(10, activation='relu')(dense)
+dense = Dense(10, activation='relu')(dense)
+dense = Dense(10, activation='relu')(dense)
+dense = Dense(10, activation='relu')(dense)
+dense = Dense(10, activation='relu')(dense)
+dense = Dense(10, activation='relu')(dense)
+dense = Dense(10, activation='relu')(dense)
+dense = Dense(10, activation='relu')(dense)
+output = Dense(100)(dense)
 
 model = keras.Model(inputs=input_layer, outputs=output)
 
 model.compile(loss='mse', optimizer='adam')
+
+#model.summary()
 
 model.fit(X, Z, epochs=1000, batch_size=10, verbose=0)
 
 zhat = model.predict(X)
 
 print('MSE: %.3f' % mean_squared_error(Z, zhat))
+
+plt.rcParams["figure.figsize"] = [7.50, 3.50]
+plt.rcParams["figure.autolayout"] = True
+
+fig = plt.figure()
+
+ax = fig.add_subplot(111, projection='3d')
+ax.plot_surface(X, Y, zhat, rstride=1, cstride=1, cmap="viridis", linewidth=0, antialiased=False)
+
+plt.show()
