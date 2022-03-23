@@ -42,7 +42,7 @@ ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap="viridis", linewidth=0, anti
 plt.show()
 '''
 
-input_layer = keras.layers.Input(shape=(X.shape[1],))
+input_layer = keras.layers.Input(shape=(100,100))
 dense = Dense(10, activation='relu')(input_layer)
 dense = Dense(10, activation='relu')(dense)
 dense = Dense(10, activation='relu')(dense)
