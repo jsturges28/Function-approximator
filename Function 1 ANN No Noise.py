@@ -7,8 +7,6 @@ Created on Tue Mar 22 18:33:19 2022
 @author: jstur2828
 """
 
-##
-
 import tensorflow as tf
 import pandas as pd
 import numpy as np
